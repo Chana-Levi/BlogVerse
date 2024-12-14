@@ -1,0 +1,14 @@
+{
+    "name": "blogverse",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "start": "npm run start-backend",
+      "start-backend": "node backend/index.js",
+      "start-frontend": "cd frontend && npm start",
+      "build-frontend": "cd frontend && npm install && npm run build"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+  }
+  

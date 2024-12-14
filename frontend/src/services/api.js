@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:7000/api/posts';
+const BASE_URL = '/api/posts';
 
 export const fetchPosts = async () => {
     const response = await axios.get(BASE_URL);
