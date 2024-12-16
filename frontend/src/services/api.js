@@ -1,13 +1,27 @@
 import axios from 'axios';
 
-const BASE_URL = '/api/posts';
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api',
+});
 
+// Interceptor להוספת הטוקן לכל בקשה
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// פונקציות לביצוע בקשות
 export const fetchPosts = async () => {
-    const response = await axios.get(BASE_URL);
-    return response.data;
+  const response = await api.get('/posts');
+  return response.data;
 };
 
 export const createPost = async (post) => {
-    const response = await axios.post(BASE_URL, post);
-    return response.data;
+  const response = await api.post('/posts', post);
+  return response.data;
 };
+
+export default api;

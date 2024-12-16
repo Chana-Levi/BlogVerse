@@ -12,7 +12,7 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:7000/api/posts/${id}`);
+        const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
         setPost(response.data);
       } catch (error) {
         setError('Error fetching post, please try again.');
@@ -42,7 +42,7 @@ const PostPage = () => {
                 {/* תמונה אם קיימת */}
                 {post.image && (
                   <img
-                    src={`http://localhost:7000/uploads/${post.image}`}
+                    src={`http://localhost:8080/uploads/${post.image}`}
                     alt={post.title}
                     className="img-fluid mb-4"
                     style={{ borderRadius: '10px' }}

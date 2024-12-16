@@ -1,23 +1,21 @@
 const express = require('express');
-const cors = require('cors'); 
+const cors = require('cors');
 const postRoutes = require('./routes/postRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-const path = require('path');
+require('dotenv').config();
+
 const PORT = process.env.PORT || 8080;
 
-app.use(cors()); 
+// Middlewares
+app.use(cors());
 app.use(express.json());
 
-
+// Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
-app.use(express.static(path.join(__dirname, 'fronted/build')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'fronted/build', 'index.html'));
-});
-
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
