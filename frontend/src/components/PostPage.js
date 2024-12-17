@@ -6,6 +6,7 @@ import { Card, Button, Alert, Container, Row, Col } from 'react-bootstrap';
 const PostPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -14,9 +15,15 @@ const PostPage = () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
         setPost(response.data);
+
+        // יצירת התקציר
+        const summaryResponse = await axios.post('http://localhost:8080/api/posts/summarize', {
+          content: response.data.content,
+        });
+        setSummary(summaryResponse.data.summary);
       } catch (error) {
-        setError('Error fetching post, please try again.');
-        console.error('Error fetching post', error);
+        setError('Error fetching post or summary, please try again.');
+        console.error('Error:', error);
       }
     };
 
@@ -33,38 +40,33 @@ const PostPage = () => {
       {post && (
         <Row className="justify-content-center">
           <Col md={8}>
-            <Card className="shadow-lg p-4 rounded-4" style={{ maxWidth: '700px', margin: 'auto', background: '#f9f9f9' }}>
+            <Card className="shadow-lg p-4 rounded-4" style={{ background: '#f9f9f9' }}>
               <Card.Body>
-                <h3 className="text-center" style={{ fontSize: '2rem', color: '#6f42c1', fontWeight: 'bold', marginBottom: '2rem' }}>
+                {/* כותרת הפוסט */}
+                <h3 className="text-center" style={{ fontSize: '2rem', color: '#6f42c1', fontWeight: 'bold' }}>
                   {post.title}
                 </h3>
 
-                {/* תמונה אם קיימת */}
-                {post.image && (
-                  <img
-                    src={`http://localhost:8080/uploads/${post.image}`}
-                    alt={post.title}
-                    className="img-fluid mb-4"
-                    style={{ borderRadius: '10px' }}
-                  />
+                {/* התקציר */}
+                {summary && (
+                  <Alert variant="info" className="mt-3">
+                    <strong>Summary:</strong> {summary}
+                  </Alert>
                 )}
 
-                {/* תוכן הפוסט */}
-                <Card.Text>{post.content}</Card.Text>
+                {/* התוכן המלא */}
+                <Card.Text style={{ fontSize: '1.1rem', color: '#333' }}>
+                  {post.content}
+                </Card.Text>
 
-                {/* כפתור חזרה לדף הבית */}
                 <div className="d-flex justify-content-center mt-4">
                   <Button
-                    variant="primary"
                     onClick={() => navigate('/')}
                     style={{
-                      borderRadius: '25px',
                       backgroundColor: '#6f42c1',
                       border: 'none',
-                      transition: 'background-color 0.3s ease',
+                      borderRadius: '25px',
                     }}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = '#5a32a3')}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = '#6f42c1')}
                   >
                     Back to Home
                   </Button>

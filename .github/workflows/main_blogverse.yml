@@ -20,7 +20,7 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          cd frontend 
+          cd fronted
           npm install
           npm run build
 
@@ -34,7 +34,7 @@ jobs:
         with:
           name: node-app
           path: |
-            frontend /build
+            fronted/build
             backend
 
   deploy:
