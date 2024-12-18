@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
-import api, { summarizePost } from '../services/api';
+import api, { summarizePost ,createPost} from '../services/api';
 
 const PostForm = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +13,6 @@ const PostForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // בדיקה אם המשתמש מחובר (יש טוקן)
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
@@ -29,7 +28,11 @@ const PostForm = () => {
       return;
     }
     try {
-      await api.post('/posts', { title, content });
+      const postData = { title, content };
+    if (summary) {
+      postData.summary = summary;
+    }
+    await createPost(postData);
       setSuccess('Post created successfully!');
       setTimeout(() => navigate('/'), 1000);
     } catch (err) {

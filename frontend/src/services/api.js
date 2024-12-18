@@ -8,7 +8,7 @@ api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token'); 
   console.log('Token being sent:', token || 'No token found'); 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`; // הוספת הטוקן ל-Headers
+    config.headers.Authorization = `Bearer ${token}`; 
   } else {
     console.warn('Warning: No token found in localStorage!');
   }
@@ -18,11 +18,11 @@ api.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-// פונקציה לקבלת כל הפוסטים
+
 export const fetchPosts = async () => {
   try {
     const response = await api.get('/posts');
-    console.log('Fetched Posts:', response.data); // הדפסת הפוסטים שהתקבלו
+    console.log('Fetched Posts:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching posts:', error.response?.data || error.message);
@@ -30,10 +30,10 @@ export const fetchPosts = async () => {
   }
 };
 
-// פונקציה ליצירת פוסט חדש
+
 export const createPost = async (post) => {
   try {
-    console.log('Creating Post:', post); // הדפסת הפרטים שנשלחים
+    console.log('Creating Post:', post); 
     const response = await api.post('/posts', post);
     console.log('Post Created:', response.data);
     return response.data;
@@ -43,18 +43,18 @@ export const createPost = async (post) => {
   }
 };
 
-// פונקציה לשליחת תוכן ליצירת תקציר
+
 export const summarizePost = async (content) => {
   try {
-    console.log('Summarizing Content:', content); // הדפסת התוכן שנשלח לסיכום
+    console.log('Summarizing Content:', content);
     const response = await api.post('/posts/summarize', { content });
-    console.log('Summary Response:', response.data); // הדפסת התשובה מהשרת
-    return response.data.summary; // קבלת התקציר מהשרת
+    console.log('Summary Response:', response.data); 
+    return response.data.summary;
   } catch (error) {
     console.error('Error generating summary:', error.response?.data || error.message);
     throw new Error('Failed to generate summary. Please try again.');
   }
 };
 
-// ייצוא ברירת מחדל של האובייקט API
+
 export default api;

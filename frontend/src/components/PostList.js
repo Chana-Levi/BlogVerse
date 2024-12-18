@@ -49,11 +49,16 @@ const PostList = () => {
                   >
                     {post.title}
                   </Card.Title>
-                  <Card.Text style={{ color: '#555' }}>
-                    {post.content.length > 100
+
+                  {/* הצגת התקציר */}
+                  <Card.Text style={{ color: '#555', fontStyle: 'italic' }}>
+                    {post.summary
+                      ? post.summary
+                      : post.content.length > 100
                       ? `${post.content.substring(0, 100)}...`
                       : post.content}
                   </Card.Text>
+
                   <div className="d-flex justify-content-center mt-4">
                     <Link to={`/post/${post.id}`}>
                       <Button
