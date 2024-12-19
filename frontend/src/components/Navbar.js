@@ -4,17 +4,16 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token'); // בדיקה אם יש טוקן
+  const isLoggedIn = !!localStorage.getItem('token');
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // מחיקת הטוקן
-    navigate('/login'); // חזרה לדף ההתחברות
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
     <Navbar expand="lg" style={{ backgroundColor: '#f9f9f9', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
       <Container>
-        {/* שם הבלוג */}
         <Navbar.Brand
           as={Link}
           to="/"
@@ -27,7 +26,6 @@ const NavigationBar = () => {
           My Blog
         </Navbar.Brand>
 
-        {/* ניווט */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>

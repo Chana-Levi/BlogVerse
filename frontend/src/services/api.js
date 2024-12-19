@@ -29,6 +29,17 @@ export const fetchPosts = async () => {
     throw new Error('Failed to fetch posts. Please try again.');
   }
 };
+export const getPost = async (id) => {
+  try {
+    const response = await api.get(`/posts/${id}`);
+    console.log('Fetched Posts:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching posts', error.response?.data || error.message);
+    throw new Error('Failed to fetch posts. Please try again.');
+  }
+};
+
 
 
 export const createPost = async (post) => {

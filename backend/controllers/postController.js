@@ -43,7 +43,6 @@ const getPostById = async (req, res) => {
   }
 };
 
-
 const summarizePost = async (req, res) => {
   const { content } = req.body;
   if (!content || content.trim() === '') {

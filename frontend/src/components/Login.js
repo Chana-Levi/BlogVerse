@@ -12,9 +12,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await api.post('/auth/login', { username, password });
-      localStorage.setItem('token', response.data.token); // שמירת הטוקן
+      localStorage.setItem('token', response.data.token);
       setMessage('Login successful! Redirecting...');
-      setTimeout(() => navigate('/'), 1500); // חזרה לדף הבית
+      setTimeout(() => navigate('/'), 1500);
     } catch (err) {
       setMessage('Login failed: ' + (err.response?.data?.message || 'Please try again.'));
     }

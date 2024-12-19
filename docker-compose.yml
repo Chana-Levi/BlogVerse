@@ -1,0 +1,24 @@
+
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      # - NODE_ENV=production
+      - PORT=8080
+      - JWT_SECRET=gHF56K!@#2NklopQUVWXYZ&*6y4Tbnm
+      - OPENAI_API_KEY="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"
+
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment: 
+      - REACT_APP_BASE_URL="https://blogversebackend.azurewebsites.net/api"
+    depends_on:
+      - backend

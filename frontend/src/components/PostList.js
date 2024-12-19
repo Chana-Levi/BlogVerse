@@ -9,7 +9,7 @@ const PostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/posts');
+        const response = await axios.get('http://blogversebackend.azurewebsites.net/api/posts');
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts', error);
@@ -50,7 +50,7 @@ const PostList = () => {
                     {post.title}
                   </Card.Title>
 
-                  {/* הצגת התקציר */}
+
                   <Card.Text style={{ color: '#555', fontStyle: 'italic' }}>
                     {post.summary
                       ? post.summary
