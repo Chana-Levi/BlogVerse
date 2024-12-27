@@ -51,6 +51,7 @@ const summarizePost = async (req, res) => {
 
   try {
     const summary = await generateSummary(content);
+    console.log(summary);
     res.json({ summary });
   } catch (error) {
     console.error('Error generating summary:', error.message);

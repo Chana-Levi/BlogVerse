@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, Button, Alert, Container, Row, Col } from 'react-bootstrap';
+import { getPost } from '../services/api';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -13,17 +13,17 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://blogversebackend.azurewebsites.net/api/posts/${id}`);
-        console.log('Fetched post:', response.data);
-        setPost(response.data);
-        console.log(post);
-        setSummary(response.data.summary);
-        }  catch (error) {
+        const response = await getPost(id);
+        debugger
+        console.log('Fetched post:', response);
+        setPost(response);
+        setSummary(response.summary);
+
+      } catch (error) {
         setError('Error fetching post or summary, please try again.');
         console.error('Error:', error);
       }
     };
-    
 
     fetchPost();
   }, [id]);

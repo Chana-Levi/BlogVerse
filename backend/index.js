@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://blogversefrontend.azurewebsites.net','http://blogversefrontend.azurewebsites.net'],
+    origin: ['http://localhost:3000', 'https://blogversefrontend.azurewebsites.net'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

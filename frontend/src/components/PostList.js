@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { fetchPosts } from '../services/api';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const getPosts = async () => {
       try {
-        const response = await axios.get('http://blogversebackend.azurewebsites.net/api/posts');
-        setPosts(response.data);
+        const response = await fetchPosts();
+        setPosts(response);
       } catch (error) {
         console.error('Error fetching posts', error);
       }
     };
 
-    fetchPosts();
+    getPosts();
   }, []);
 
   return (

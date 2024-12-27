@@ -18,7 +18,6 @@ api.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-
 export const fetchPosts = async () => {
   try {
     const response = await api.get('/posts');
@@ -32,15 +31,14 @@ export const fetchPosts = async () => {
 export const getPost = async (id) => {
   try {
     const response = await api.get(`/posts/${id}`);
-    console.log('Fetched Posts:', response.data);
+    debugger
+    console.log('Fetched Post:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching posts', error.response?.data || error.message);
     throw new Error('Failed to fetch posts. Please try again.');
   }
 };
-
-
 
 export const createPost = async (post) => {
   try {
@@ -54,7 +52,6 @@ export const createPost = async (post) => {
   }
 };
 
-
 export const summarizePost = async (content) => {
   try {
     console.log('Summarizing Content:', content);
@@ -66,6 +63,5 @@ export const summarizePost = async (content) => {
     throw new Error('Failed to generate summary. Please try again.');
   }
 };
-
 
 export default api;

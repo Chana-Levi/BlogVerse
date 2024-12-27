@@ -45,7 +45,6 @@ const createPost = ({ title, content, summary }) => {
   return newPost;
 };
 
-// שליפת פוסט לפי ID
 const getPostById = (id) => {
   return posts.find((post) => post.id === parseInt(id));
 };

@@ -3,7 +3,6 @@ const path = require('path');
 
 const usersFile = path.join(__dirname, '../users.json');
 
-// קריאת המשתמשים מהקובץ
 const loadUsers = () => {
   try {
     const data = fs.readFileSync(usersFile, 'utf-8');
@@ -13,7 +12,6 @@ const loadUsers = () => {
   }
 };
 
-// שמירת המשתמשים לקובץ
 const saveUsers = (users) => {
   fs.writeFileSync(usersFile, JSON.stringify(users, null, 2), 'utf-8');
 };
@@ -27,7 +25,7 @@ const createUser = ({ username, password }) => {
   if (users.find(user => user.username === username)) {
     throw new Error('Username already exists');
   }
-  const newUser = { username, password }; // הוספת המשתמש החדש
+  const newUser = { username, password };
   users.push(newUser);
   saveUsers(users);
   return newUser;
