@@ -44,12 +44,14 @@ const getPostById = async (req, res) => {
 };
 
 const summarizePost = async (req, res) => {
+  console.log("chana")
   const { content } = req.body;
   if (!content || content.trim() === '') {
     return res.status(400).json({ error: 'Content is required for summarization.' });
   }
 
   try {
+    
     const summary = await generateSummary(content);
     console.log(summary);
     res.json({ summary });

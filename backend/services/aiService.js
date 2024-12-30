@@ -6,6 +6,8 @@ const openai = new OpenAI({
 });
 
 const generateSummary = async (content) => {
+  console.log("aaaaaaaaaaaaaaaaa");
+  
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo', 
@@ -15,7 +17,7 @@ const generateSummary = async (content) => {
       ],
       max_tokens: 150,
     });
-
+    console.log( "rewss"+response);
     const summary = response.choices[0]?.message?.content.trim();
     return summary || 'No summary generated.';
   } catch (error) {

@@ -13,7 +13,9 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
 3. [Architecture Overview](#architecture-overview)
 4. [Technologies Used](#technologies-used)
 5. [Future Improvements](#future-improvements)
-6. [Contact](#contact)
+6. [Cloud Deployment](#cloud-deployment)
+7. [Project Links](#project-links)
+8. [Contact](#contact)
 
 ---
 
@@ -42,7 +44,7 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
    ```
 4. Start the backend server:
    ```bash
-   node index.js
+   npm start
    ```
    The backend will run on `http://localhost:8080`.
 
@@ -57,11 +59,22 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
    ```bash
    npm install
    ```
-3. Start the frontend development server:
+3. Create a `.env` file in the `frontend` folder and configure the API base URL:
+   ```env
+   # Use this for local backend server
+   REACT_APP_BASE_URL=http://localhost:8080/api
+   
+   # Use this for cloud backend server
+   REACT_APP_BASE_URL=https://blogversebackend.azurewebsites.net/api
+   ```
+4. Start the frontend development server:
    ```bash
    npm start
    ```
-   The frontend will run on `http://localhost:3000`.
+   - For local development, ensure `REACT_APP_BASE_URL` points to the local backend.
+   - For cloud deployment, update `REACT_APP_BASE_URL` to point to the cloud backend.
+
+The frontend will run on `http://localhost:3000`.
 
 ---
 
@@ -96,7 +109,7 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
 - **Routing**: React Router
 - **API Communication**: Axios
 
-**Features**:
+**Features:**
 - Responsive design.
 - Home page displaying all blog posts.
 - Secure login and registration.
@@ -107,7 +120,7 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
 ### **Backend**
 - **Framework**: Node.js and Express.js
 - **Authentication**: JWT (JSON Web Token)
-- **API Endpoints**:
+- **API Endpoints:**
   - `GET /api/posts` - Retrieve all posts.
   - `POST /api/posts` - Create a new post.
   - `GET /api/posts/:id` - Retrieve a single post.
@@ -151,10 +164,22 @@ BlogVerse is a simple personal blog platform that allows users to create, view, 
 
 ---
 
+## **Cloud Deployment**
+
+The project was deployed to Azure using Docker containers for both frontend and backend. The process involved building Docker images, tagging them, pushing them to Azure Container Registry (ACR), and then configuring them on Azure App Services. Additional configuration and restarts ensured smooth deployment and integration.
+
+---
+
+## **Project Links**
+- 🌐 **Frontend:** [https://blogversefrontend.azurewebsites.net/](https://blogversefrontend.azurewebsites.net/)
+- 🌐 **Backend API:** [https://blogversebackend.azurewebsites.net/api/posts](https://blogversebackend.azurewebsites.net/api/posts)
+
+---
+
 ## **Contact**
 
 **Developer**: Chana Levi  
-**Email**: chana79532@gmail.com
 **GitHub**: [https://github.com/Chana-Levi](https://github.com/Chana-Levi)
 
 ---
+

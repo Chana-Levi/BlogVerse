@@ -30,7 +30,7 @@ export const fetchPosts = async () => {
 };
 export const getPost = async (id) => {
   try {
-    const response = await api.get(`/posts/${id}`);
+    const response = await api.get(`/${id}`);
     debugger
     console.log('Fetched Post:', response.data);
     return response.data;
@@ -56,6 +56,7 @@ export const summarizePost = async (content) => {
   try {
     console.log('Summarizing Content:', content);
     const response = await api.post('/posts/summarize', { content });
+    // const response = await api.post('/summarize', { content });
     console.log('Summary Response:', response.data); 
     return response.data.summary;
   } catch (error) {
